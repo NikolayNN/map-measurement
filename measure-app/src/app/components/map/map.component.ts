@@ -14,6 +14,7 @@ import { MeasureMapService } from 'src/app/services/measure-map.service';
 })
 export class MapComponent implements OnInit {
 
+  //у нас из полей должен остаться только Map
   private map: Map;
   private sourceMap: VectorSource;
   private baseLocation: Array<number> = [-11000000, 4600000];
@@ -26,11 +27,16 @@ export class MapComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
+
+    // передавать как параметр map не имеет смысла
+    // zoom и baseLocation в Map сервис
     [this.map, this.sourceMap] = this.initMapService.create(this.map, this.baseLocation, this.zoom);
     this.measureMapService.initTools(this.map, this.sourceMap);
     this.centeringMap();
   }
 
+  // теперь эту логику можно перенести в MapService
+  // т.е. в момент инициализациии карты мы будем ее центрировать
   private centeringMap(): void {
     this.locationService.getLocation().subscribe(
       response => {

@@ -7,7 +7,6 @@ import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import { OSM, Vector as VectorSource } from 'ol/source';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -15,11 +14,14 @@ export class InitMapService {
 
   constructor() { }
 
+
   public create(map: Map, loc: Array<number>, zoom: number): Map {
     let raster = new TileLayer({
       source: new OSM()
     });
 
+    // этот слой используется для измерений
+    // он должен быть measure-map.service
     let source = new VectorSource();
 
     let vector = new VectorLayer({
@@ -50,6 +52,7 @@ export class InitMapService {
       })
     });
 
+    //вернуть просто Map
     return [map, source];
   }
 

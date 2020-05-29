@@ -19,6 +19,10 @@ export class MeasureMapService {
 
   constructor() { }
 
+  // init метод должен принять ссылку на карту
+  // и создать нужный слой
+  // далее нужно предоставить методы для работы с измерениями
+  // например метод начать измерение
   public initTools(map: Map, source: VectorSource) {
     /**
      * Currently drawn feature.
@@ -111,6 +115,7 @@ export class MeasureMapService {
      * @param {LineString} line The line.
      * @return {string} The formatted length.
      */
+      // я бы создал класс MeasureUtils куда бы поместил этот метод как статический
     var formatLength = function (line) {
       var length = getLength(line);
       var output;
@@ -130,6 +135,7 @@ export class MeasureMapService {
      * @param {Polygon} polygon The polygon.
      * @return {string} Formatted area.
      */
+    // я бы создал класс MeasureUtils куда бы поместил этот метод как статический
     var formatArea = function (polygon) {
       var area = getArea(polygon);
       var output;
